@@ -89,22 +89,13 @@ public class FragmentCari extends Fragment {
                     tampilVoice.setQuery(result.get(0), false);
                     String dataString = result.get(0);
 
-                    final TextView nama = getActivity().findViewById(R.id.nama_unsur_detail);
-                    final TextView deskripsi = getActivity().findViewById(R.id.deskripsi_detail);
-                    final ImageView ikon = getActivity().findViewById(R.id.ikon_detail);
-                    final TextView simbol = getActivity().findViewById(R.id.simbol_unsur_detail);
-                    final TextView masa = getActivity().findViewById(R.id.masa_atom_detail);
-                    final TextView nomor = getActivity().findViewById(R.id.nomor_atom_detail);
-                    final TextView golongan = getActivity().findViewById(R.id.golongan_atom_detail);
-                    final TextView priode = getActivity().findViewById(R.id.priode_detail);
-
                     ApiInterface apiService =
                             ApiClient.getClient().create(ApiInterface.class);
                     Call<Unsur> call = apiService.getSearch(dataString);
                     call.enqueue(new Callback<Unsur>() {
                         @Override
                         public void onResponse(Call<Unsur> call, Response<Unsur> response) {
-                            Unsur list = response.body();
+                            
                         }
 
                         @Override
