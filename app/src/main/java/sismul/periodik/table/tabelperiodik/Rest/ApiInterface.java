@@ -17,10 +17,10 @@ public interface ApiInterface {
 //
     @GET("unsur/{id}")
     Call<Unsur> getUnsur(@Path("id") int id);
-//
-//    @GET("search/{query}")
-//    Call<MoviesResponse> getUnsur(@Path("query") String query);
-//
+
+    @GET("search/{query}")
+    Call<Unsur> getSearch(@Path("query") String query);
+
     @GET("golongan/{id}")
     Call<List<Unsur>> getGolongan(@Path("id") int id);
 

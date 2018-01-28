@@ -61,6 +61,11 @@ public class FragmentDetailUnsur extends Fragment {
         final TextView nama = layout.findViewById(R.id.nama_unsur_detail);
         final TextView deskripsi = layout.findViewById(R.id.deskripsi_detail);
         final ImageView ikon = layout.findViewById(R.id.ikon_detail);
+        final TextView simbol = layout.findViewById(R.id.simbol_unsur_detail);
+        final TextView masa = layout.findViewById(R.id.masa_atom_detail);
+        final TextView nomor = layout.findViewById(R.id.nomor_atom_detail);
+        final TextView golongan = layout.findViewById(R.id.golongan_atom_detail);
+        final TextView priode = layout.findViewById(R.id.priode_detail);
 
         ApiInterface apiService =
                 ApiClient.getClient().create(ApiInterface.class);
@@ -69,7 +74,12 @@ public class FragmentDetailUnsur extends Fragment {
         call.enqueue(new Callback<Unsur>() {
             @Override
             public void onResponse(Call<Unsur> call, Response<Unsur> response) {
-                nama.setText(response.body().getNama_unsur()+" ("+response.body().getSimbol()+")");
+                nama.setText("Nama Unsur : "+response.body().getNama_unsur());
+                simbol.setText("Simbol     : "+response.body().getSimbol());
+                masa.setText("Masa Atom  : "+response.body().getMasa_atom());
+                nomor.setText("Nomor Atom  : "+response.body().getNomor_atom());
+                golongan.setText("Golongan   : "+response.body().getGolongan());
+                priode.setText("Periode    : "+response.body().getPeriode());
                 deskripsi.setText(response.body().getDeskripsi());
                 Glide.with(mContext)
                         .load("http://128.199.88.3/assets/favicon-28e468f376ecf931cbdc38bfc3ed23b2762792e6fb92fbba26d56cf9d420a669.png")

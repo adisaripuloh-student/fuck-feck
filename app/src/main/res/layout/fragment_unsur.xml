@@ -18,37 +18,134 @@
 
             <ImageView
                 android:id="@+id/ikon_detail"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/album_cover_height"
+                android:layout_width="200dp"
+                android:layout_height="180dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="17dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:clickable="true"
-                android:paddingRight="@dimen/card_margin"
                 android:paddingLeft="@dimen/card_margin"
+                android:paddingRight="@dimen/card_margin"
                 android:paddingTop="@dimen/card_margin"
                 android:scaleType="fitXY" />
 
             <TextView
                 android:id="@+id/nama_unsur_detail"
-                android:layout_width="match_parent"
+                android:layout_width="180dp"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/ikon_detail"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/ikon_detail"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_weight="1"
                 android:paddingLeft="@dimen/album_title_padding"
                 android:paddingRight="@dimen/album_title_padding"
                 android:paddingTop="@dimen/album_title_padding"
-                android:textAlignment="center"
+                android:text="Text INI"
                 android:textColor="@color/album_title"
-                android:textSize="@dimen/album_title" />
+                android:textSize="13sp" />
 
             <TextView
                 android:id="@+id/deskripsi_detail"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/nama_unsur_detail"
+                android:layout_height="100dp"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/textView8"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="13dp"
+                android:lineSpacingExtra="8sp"
                 android:paddingBottom="@dimen/songs_count_padding_bottom"
                 android:paddingLeft="@dimen/album_title_padding"
                 android:paddingRight="@dimen/album_title_padding"
+                android:text="Text TEXT TEXT"
                 android:textAlignment="center"
-                android:textSize="@dimen/songs_count" />
+                android:textColor="@color/album_title"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/simbol_unsur_detail"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignTop="@+id/nama_unsur_detail"
+                android:paddingBottom="0dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="10dp"
+                android:text="TextView"
+                android:textColor="@color/album_title"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/masa_atom_detail"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/nama_unsur_detail"
+                android:layout_marginLeft="10dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="10dp"
+                android:text="TextView"
+                android:textColor="@color/album_title"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/nomor_atom_detail"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/masa_atom_detail"
+                android:layout_alignBottom="@+id/masa_atom_detail"
+                android:layout_alignParentEnd="true"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="10dp"
+                android:text="TextView"
+                android:textColor="@color/album_title"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/golongan_atom_detail"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/masa_atom_detail"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="11dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="10dp"
+                android:text="TextView"
+                android:textColor="@color/album_title"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/priode_detail"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/textView8"
+                android:layout_alignParentEnd="true"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="10dp"
+                android:text="TextView"
+                android:textColor="@color/album_title"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/golongan_atom_detail"
+                android:layout_below="@+id/golongan_atom_detail"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="12dp"
+                android:text="Deskripsi :"
+                android:textColor="@color/album_title" />
+
         </RelativeLayout>
 
     </android.support.v7.widget.CardView>
