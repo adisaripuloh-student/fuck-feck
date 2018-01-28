@@ -61,7 +61,7 @@ public class UnsurPeriodeAdapter extends RecyclerView.Adapter<UnsurPeriodeAdapte
         holder.deskripsi.setText("Golongan "+up.getGolongan()+" - Nomor "+up.getNomor_atom());
 
         Glide.with(mContext)
-                .load("http://128.199.88.3/assets/favicon-28e468f376ecf931cbdc38bfc3ed23b2762792e6fb92fbba26d56cf9d420a669.png")
+                .load("http://128.199.88.3/images/"+up.getIkon_file_name())
                 .into(holder.ikon);
 
         holder.ikon.setOnClickListener(new View.OnClickListener() {

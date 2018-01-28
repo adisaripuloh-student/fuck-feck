@@ -10,31 +10,20 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <SearchView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/searchView">
-
-        </SearchView>
-
         <ImageButton
             android:id="@+id/ibutton_cari"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="141dp"
-            android:layout_weight="1"
+            android:layout_centerInParent="true"
             app:srcCompat="@android:drawable/ic_btn_speak_now" />
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/ibutton_cari"
+            android:layout_below="@+id/ibutton_cari"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="91dp"
-            android:text="Tap Untuk Memulai" />
+            android:text="Tap untuk mencari unsur" />
 
     </RelativeLayout>
 </android.support.design.widget.CoordinatorLayout>

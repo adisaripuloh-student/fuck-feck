@@ -4,8 +4,9 @@ import android.content.Context;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.RecyclerView;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -74,15 +75,15 @@ public class FragmentDetailUnsur extends Fragment {
         call.enqueue(new Callback<Unsur>() {
             @Override
             public void onResponse(Call<Unsur> call, Response<Unsur> response) {
-                nama.setText("Nama Unsur : "+response.body().getNama_unsur());
-                simbol.setText("Simbol     : "+response.body().getSimbol());
-                masa.setText("Masa Atom  : "+response.body().getMasa_atom());
-                nomor.setText("Nomor Atom  : "+response.body().getNomor_atom());
-                golongan.setText("Golongan   : "+response.body().getGolongan());
-                priode.setText("Periode    : "+response.body().getPeriode());
-                deskripsi.setText(response.body().getDeskripsi());
+                nama.setText("Nama Unsur : " + response.body().getNama_unsur());
+                simbol.setText("Simbol : " + response.body().getSimbol());
+                masa.setText("Massa Atom : " + response.body().getMasa_atom() + " g/Mol");
+                nomor.setText("Nomor Atom : " + response.body().getNomor_atom());
+                golongan.setText("Golongan : " + response.body().getGolongan());
+                priode.setText("Periode : " + response.body().getPeriode());
+                deskripsi.setText("Deskripsi\n\n" + response.body().getDeskripsi());
                 Glide.with(mContext)
-                        .load("http://128.199.88.3/assets/favicon-28e468f376ecf931cbdc38bfc3ed23b2762792e6fb92fbba26d56cf9d420a669.png")
+                        .load("http://128.199.88.3/images/" + response.body().getIkon_file_name())
                         .into(ikon);
                 mySpeech.speak(response.body().getDeskripsi(), TextToSpeech.QUEUE_FLUSH, null);
             }
@@ -93,5 +94,13 @@ public class FragmentDetailUnsur extends Fragment {
             }
         });
         return layout;
+    }
+
+    @Override
+    public void onDetach() {
+        if (mySpeech != null) {
+            mySpeech.stop();
+        }
+        super.onDetach();
     }
 }

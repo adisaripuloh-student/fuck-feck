@@ -4,13 +4,16 @@ import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
+import android.speech.tts.TextToSpeech;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,7 +38,7 @@ import static android.app.Activity.RESULT_OK;
 
 public class FragmentCari extends Fragment {
     private final int REQ_CODE_SPEECH_INPUT = 100;
-    private SearchView tampilVoice;
+    TextToSpeech mySpeech;
 
     public static FragmentCari newInstance() {
         FragmentCari fragment = new FragmentCari();
@@ -47,10 +50,9 @@ public class FragmentCari extends Fragment {
         super.onCreate(savedInstanceState);
 
         TextView toolbarTitle = getActivity().findViewById(R.id.toolbar_title);
-        toolbarTitle.setText("Cari");
+        toolbarTitle.setText("Tabel Periodik");
 
         ImageButton image_button = getView().findViewById(R.id.ibutton_cari);
-        tampilVoice = getActivity().findViewById(R.id.searchView);
 
         image_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,7 +69,7 @@ public class FragmentCari extends Fragment {
                 RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
         intent.putExtra(RecognizerIntent.EXTRA_PROMPT,
-                "Hi speak something");
+                "Cari unsur..");
         try {
             startActivityForResult(intent, REQ_CODE_SPEECH_INPUT);
         } catch (ActivityNotFoundException a) {
@@ -84,10 +86,18 @@ public class FragmentCari extends Fragment {
             case REQ_CODE_SPEECH_INPUT: {
                 if (resultCode == RESULT_OK && null != data) {
 
+                    mySpeech = new TextToSpeech(getActivity(), new TextToSpeech.OnInitListener() {
+                        @Override
+                        public void onInit(int i) {
+                            if (i != TextToSpeech.ERROR) {
+                                mySpeech.setLanguage(new Locale("id", "ID"));
+                            }
+                        }
+                    });
+
                     ArrayList<String> result = data
                             .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-                    tampilVoice.setQuery(result.get(0), false);
-                    String dataString = result.get(0);
+                    final String dataString = result.get(0);
 
                     ApiInterface apiService =
                             ApiClient.getClient().create(ApiInterface.class);
@@ -95,12 +105,24 @@ public class FragmentCari extends Fragment {
                     call.enqueue(new Callback<Unsur>() {
                         @Override
                         public void onResponse(Call<Unsur> call, Response<Unsur> response) {
-                            
+                            if(response.body() != null) {
+                                AppCompatActivity activity = (AppCompatActivity) getActivity();
+                                FragmentDetailUnsur myFragment = new FragmentDetailUnsur();
+                                Bundle args = new Bundle();
+                                args.putInt("id", Integer.parseInt(String.valueOf(response.body().getId())));
+                                TextView toolbarTitle = activity.findViewById(R.id.toolbar_title);
+                                toolbarTitle.setText(response.body().getNama_unsur() + " (" + response.body().getSimbol() + ")");
+                                myFragment.setArguments(args);
+                                activity.getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, myFragment).addToBackStack(null).commit();
+                            } else {
+                                mySpeech.speak("Unsur "+dataString+" tidak ada.", TextToSpeech.QUEUE_FLUSH, null);
+                            }
                         }
 
                         @Override
                         public void onFailure(Call<Unsur> call, Throwable t) {
                             Toast.makeText(getActivity(), "Connection failed.", Toast.LENGTH_SHORT).show();
+                            Log.d("tes", String.valueOf(t));
                         }
                     });
 
