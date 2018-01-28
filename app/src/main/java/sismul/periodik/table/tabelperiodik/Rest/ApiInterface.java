@@ -15,8 +15,8 @@ public interface ApiInterface {
 //    @GET("unsurs")
 //    Call<List<UnsurGolongan>> getUnsurs();
 //
-//    @GET("unsur/{id}")
-//    Call<MoviesResponse> getUnsur(@Path("id") int id);
+    @GET("unsur/{id}")
+    Call<Unsur> getUnsur(@Path("id") int id);
 //
 //    @GET("search/{query}")
 //    Call<MoviesResponse> getUnsur(@Path("query") String query);

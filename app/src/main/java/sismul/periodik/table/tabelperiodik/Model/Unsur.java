@@ -2,11 +2,15 @@ package sismul.periodik.table.tabelperiodik.Model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.InputStream;
+
 /**
  * Created by x on 28/01/18.
  */
 
 public class Unsur {
+    @SerializedName("id")
+    private int id;
     @SerializedName("simbol")
     private String simbol;
     @SerializedName("nama_unsur")
@@ -24,7 +28,8 @@ public class Unsur {
     @SerializedName("ikon_file_name")
     private String ikon_file_name;
 
-    public Unsur(String simbol, String nama_unsur, String masa_atom, String nomor_atom, String deskripsi, String golongan, String periode, String ikon_file_name) {
+    public Unsur(int id, String simbol, String nama_unsur, String masa_atom, String nomor_atom, String deskripsi, String golongan, String periode, String ikon_file_name) {
+        this.id = id;
         this.simbol = simbol;
         this.nama_unsur = nama_unsur;
         this.masa_atom = masa_atom;
@@ -33,6 +38,14 @@ public class Unsur {
         this.golongan = golongan;
         this.periode = periode;
         this.ikon_file_name = ikon_file_name;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getSimbol() {
