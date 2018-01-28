@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Tabel Periodik</string>
+    <string name="title_golongan">Daftar Golongan</string>
+    <string name="title_cari">Cari</string>
+    <string name="title_periode">Daftar Periode</string>
+    <string name="search_hint">Cari...</string>
+</resources>

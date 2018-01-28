@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#FF4081</color>
+    <color name="colorPrimaryDark">#E91E63</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="bgBottomNavigation">#E91E63</color>
+
+    <color name="contact_name">#333333</color>
+    <color name="contact_number">#8c8c8c</color>
+
+    <color name="title">#222222</color>
+
+    <color name="album_title">#4c4c4c</color>
+</resources>
